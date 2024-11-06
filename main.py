@@ -1,18 +1,25 @@
-import random
-a = [[random.randint(-10,10) for i in range(4)] for i in range(20)]
-unique = set()
-for list in a:
-    for i in range(len(list)):
-        for j in range( i+1, len(list)):
-            pair = tuple(sorted((list[i], list[j])))
-            unique.add(pair)
-print("Множество  уникальных комбинаций пар: ", unique)
-number = int(input("Введите число: "))
-count = 0
-for pair in unique:
-    sum = 0
-    for i in pair:
-        sum = sum + i
-    if sum < number:
-        count += 1
-print(f"Количество пар, которые меньше {number}: ", count)
+"""
+Написать программу, которая:
+- Создаёт случайный список из **20** значений по **4** случайных целых чисел от **-10** до **10**.
+- Находит все уникальные комбинации пар из этих значений и выводит их в виде списка кортежей.
+- Пользователь вводит целое число.
+- Вычисляет количество пар, чья сумма меньше заданного пользователем значения.
+"""
+import random #импортируем модуль
+a = [[random.randint(-10,10) for i in range(4)] for i in range(20)]  #создаём список 
+unique = set()  #создаём пустое множество
+for list in a:  #перебираем строки в списке
+    for i in range(len(list)):  #перебираем элементы в диапозооне длины строк
+        for j in range( i+1, len(list)):  #перебираем элеметы в диапозооне длины строк начиная со следующего
+            pair = tuple(sorted((list[i], list[j])))   #преобразуем в кортеж сортированный
+            unique.add(pair)  #добавляем в множество
+print("Множество  уникальных комбинаций пар: ", unique)  #выводим
+number = int(input("Введите число: "))  #приглашение для ввода
+count = 0  #начало счётчика
+for pair in unique:  #перебираем пары в множестве
+    sum = 0  #инициализируем переменную суммы
+    for i in pair:   #перебираем элементы в парах
+        sum = sum + i  #считаем сумму
+    if sum < number:   #если сумма меньше введённого числа 
+        count += 1   #увеличиваем счётчик
+print(f"Количество пар, которые меньше {number}: ", count)  #выводим
